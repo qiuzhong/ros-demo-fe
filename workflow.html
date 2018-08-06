@@ -2,142 +2,249 @@
 <html lang="en" class="no-js">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>ROS</title>
-	<meta name="keywords" content="roslibjs, ros2-web-bridge, rclnodejs"
-	/>
-	<meta name="author" content="ros" />
-	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="css/demo.css" />
-	<link rel="stylesheet" type="text/css" href="css/component.css" />
-	<script src="js/modernizr.custom.25376.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ROS</title>
+  <meta name="keywords" content="roslibjs, ros2-web-bridge, rclnodejs">
+  <meta name="author" content="ros" />
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/demo.css">
+  <link rel="stylesheet" type="text/css" href="css/component.css">
+  <script src="js/modernizr.custom.25376.js"></script>
 </head>
 
 <body>
-	<div id="perspective" class="perspective effect-movedown">
-		<div class="container">
-			<div class="wrapper">
-				<header class="ros-header">
-					<h1>Roslibjs, ros2-web-bridge and rclnodejs workflow
-					</h1>
-					<p>
-						<button id="showMenu">Menu</button>
-					</p>
-				</header>
-				<div class="main clearfix">
-					<div class="columnright">
-              <div class='containerx'>
-                  <div class="flex-container">
-                    <div class='n r' id='r1'>
-                      <div class="roslibjsworkflow">
-                        <div class="round">
-                          <div class="roundnow">ROSLIBJS</div>
-                          <div class="mark"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                  </div>
-              
-                  <div class="flex-container">
-                    <div class='n r' id='a1'>
-                      <div class='arrow bounce'></div>
-                    </div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                  </div>
-              
-                  <div class="flex-container">
-                    <div class='n r' id='r2'>
-                      <div class="roslibjsworkflow">
-                        <div class="round">
-                          <div class="roundnow">Web Browser</div>
-                          <div class="mark"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class='n ltr r' id='a2'>
-                      <div class='arrow bounce'></div>
-                    </div>
-                    <div class='n r' id='r3'>
-                      <div class="roslibjsworkflow">
-                        <div class="round">
-                          <div class="roundnow">ROS2
-                            <br>Web Bridge</div>
-                          <div class="mark"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class='n ltr r' id='a3'>
-                      <div class='arrow bounce'></div>
-                    </div>
-                    <div class='n r' id='r4'>
-                      <div class="roslibjsworkflow">
-                        <div class="round">
-                          <div class="roundnow">rclnodejs</div>
-                          <div class="mark"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-              
-                  <div class="flex-container">
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n r' id='a4'>
-                      <div class='arrow bounce'></div>
-                    </div>
-                  </div>
-              
-                  <div class="flex-container">
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n'></div>
-                    <div class='n r' id='r5'>
-                      <div class="roslibjsworkflow">
-                        <div class="round">
-                          <div class="roundnow">RCL</div>
-                          <div class="mark"></div>
-                        </div>
-                      </div>
+  <div id="perspective" class="perspective effect-movedown">
+    <div class="container">
+      <div class="wrapper">
+        <header class="ros-header">
+          <h1>Roslibjs, ros2-web-bridge and rclnodejs workflow
+          </h1>
+          <p>
+            <button id="showMenu">MENU</button>
+          </p>
+        </header>
+        <div class="main clearfix">
+          <div class="columnright">
+            <div class='containerx'>
+              <div class="flex-container">
+                <div class='n'>
+                  <div class="roslibjsworkflow">
+                    <div class="round">
+                      <div class="roundnow" id='r1'>ROSLIBJS</div>
+                      <div class="mark"></div>
                     </div>
                   </div>
                 </div>
-              
-                <div>
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n'></div>
+              </div>
+
+              <div class="flex-container">
+                <div class='n utd arrow'>
+                  <div class='italic vno t1'>Stringify JSON request</div>
+                  <div class='svg-arrow'>
+                    <svg id='a1' aria-hidden="true" data-prefix="fas" data-icon="arrow-down" class="vno t1" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path fill="currentColor" d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"></path>
+                    </svg>
+                    <svg id='a2' aria-hidden="true" data-prefix="fas" data-icon="arrow-up" class="vno t8" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
+                    </svg>
+                  </div>
+                  <div class='italic vno t8'>Parsed JSON result</div>
+                </div>
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n'></div>
+              </div>
+
+              <div class="flex-container">
+                <div class='n'>
+                  <div class="roslibjsworkflow">
+                    <div class="round">
+                      <div class="roundnow" id='r2'>Web
+                        <br>Browser</div>
+                      <div class="mark"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='n ltr arrow'>
+                  <div class='italic vno t7'>JSON transferring</div>
+                  <div class='svg-arrow'>
+                    <svg id='a3' aria-hidden="true" data-prefix="fas" data-icon="arrow-left" class="vno t7" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
+                    </svg>
+                    <svg id='a4' aria-hidden="true" data-prefix="fas" data-icon="arrow-right" class="vno t2" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
+                    </svg>
+                  </div>
+                  <div class='italic vno t2'>Stringify JSON response</div>
+                </div>
+                <div class='n'>
+                  <div class="roslibjsworkflow">
+                    <div class="round">
+                      <div class="roundnow" id='r3'>ROS2
+                        <br>Web Bridge</div>
+                      <div class="mark"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='n ltr arrow'>
+                  <div class='italic vno t6'>Invoke rclnodejs</div>
+                  <div class='svg-arrow'>
+                    <svg id='a5' aria-hidden="true" data-prefix="fas" data-icon="arrow-left" class="vno t6" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path fill="currentColor" d="M257.5 445.1l-22.2 22.2c-9.4 9.4-24.6 9.4-33.9 0L7 273c-9.4-9.4-9.4-24.6 0-33.9L201.4 44.7c9.4-9.4 24.6-9.4 33.9 0l22.2 22.2c9.5 9.5 9.3 25-.4 34.3L136.6 216H424c13.3 0 24 10.7 24 24v32c0 13.3-10.7 24-24 24H136.6l120.5 114.8c9.8 9.3 10 24.8.4 34.3z"></path>
+                    </svg>
+                    <svg id='a6' aria-hidden="true" data-prefix="fas" data-icon="arrow-right" class="vno t3" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
+                    </svg>
+                  </div>
+                  <div class='italic vno t3'>Return request result</div>
+                </div>
+                <div class='n '>
+                  <div class="roslibjsworkflow">
+                    <div class="round">
+                      <div class="roundnow" id='r4'>rclnodejs</div>
+                      <div class="mark"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex-container">
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n utd arrow'>
+                  <div class='italic vno t4'>???</div>
+                  <div class='svg-arrow'>
+                    <svg id='a7' aria-hidden="true" data-prefix="fas" data-icon="arrow-down" class="vno t4" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path fill="currentColor" d="M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z"></path>
+                    </svg>
+                    <svg id='a8' aria-hidden="true" data-prefix="fas" data-icon="arrow-up" class="vno t5" role="img" xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512">
+                      <path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
+                    </svg>
+                  </div>
+                  <div class='italic vno t5'>???</div>
+                </div>
+              </div>
+
+              <div class="flex-container">
+                <div class='n'>
                   <input type="button" value="Workflow" />
                 </div>
-              
-					</div>
-					<div class="columnleft">
-						<div class="log">
-							Code Snipnet
-						</div>
-					</div>
-					<div class="related">
-						<p></p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<nav class="outer-nav top horizontal">
-        <a href="index.html" class="icon-controller">Play</a>
-        <a href="workflow.html" class="icon-subscribe">Workflow</a>
-			<a href="#" class="icon-realsense">RealSense</a>
-		</nav>
-	</div>
-	<script src="js/classie.js"></script>
-	<script src="js/menu.js"></script>
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n'></div>
+                <div class='n'>
+                  <div class="roslibjsworkflow">
+                    <div class="round">
+                      <div class="roundnow" id='r5'>RCL</div>
+                      <div class="mark"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="columnleft">
+            <div class="log">
+              Code Snipnet
+            </div>
+          </div>
+          <div class="related">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="outer-nav top horizontal">
+      <a href="index.html" class="icon-controller">Play</a>
+      <a href="workflow.html" class="icon-subscribe">Workflow</a>
+      <a href="#" class="icon-realsense">RealSense</a>
+    </nav>
+  </div>
+  <script src="js/classie.js"></script>
+  <script src="js/menu.js"></script>
+  <script>
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function arrowshow(element) {
+      let el = document.querySelectorAll(element);
+      el.forEach(function (ele) {
+        e = ele.getAttribute('class');
+        if(e.includes('vno')) {
+          ele.setAttribute('class', e.replace('vno', ''));
+        }
+      })
+    }
+
+    function roundshow(element, className) {
+      let el = document.querySelector(element);
+      el.setAttribute('class', 'roundnow ' + className);
+    }
+
+    async function showflow () {
+      roundshow('#r1', 'roundcolor');
+      arrowshow('.t1')
+      await sleep(2000);
+      roundshow('#r2', 'roundcolor');
+      arrowshow('.t2');
+      await sleep(2000);
+      roundshow('#r3', 'roundcolor');
+      arrowshow('.t3');
+      await sleep(2000);
+      roundshow('#r4', 'roundcolor');
+      arrowshow('.t4');
+      await sleep(2000);
+      roundshow('#r5', 'roundcolor');
+      roundshow('#r5', 'roundcolor2');
+      arrowshow('.t5');
+      await sleep(2000);
+      roundshow('#r4', 'roundcolor2');
+      arrowshow('.t6');
+      await sleep(2000);
+      roundshow('#r3', 'roundcolor2');
+      arrowshow('.t7');
+      await sleep(2000);
+      roundshow('#r2', 'roundcolor2');
+      arrowshow('.t8');
+      await sleep(2000);
+      roundshow('#r1', 'roundcolor2');
+    }
+
+    let init = function () {
+      // let svg = document.querySelectorAll('svg');
+      // let italic = document.querySelectorAll('.italic');
+      // svg.forEach(function(ele){
+      //   ele.setAttribute('class', 'vno');
+      // })
+      // italic.forEach(function(ele){
+      //   ele.setAttribute('class', 'vno');
+      // })
+
+      let wf = document.querySelector('input');
+      wf.addEventListener('click', showflow, false);
+    }
+
+    document.addEventListener('DOMContentLoaded', init, false);
+  </script>
 </body>
 
 </html>

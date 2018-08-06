@@ -9,7 +9,7 @@ html, body, .perspective {
 }
 
 .container {
-	background: linear-gradient(115deg, rgba(86, 216, 228,1) 5%,rgba(159, 1, 234,1) 95%);
+	background: linear-gradient(115deg, rgba(112, 193, 179,1) 5%,rgba(36, 123, 160,1) 95%);
 	min-height: 100%;
 	position: relative;
 	color: #fff;
@@ -362,7 +362,7 @@ html, body, .perspective {
 
 /* Effect Move Down */
 .effect-movedown {
-	background:linear-gradient(115deg, rgba(159, 1, 234,1) 5%, rgba(86, 216, 228,1) 95%);
+	background:linear-gradient(115deg, rgba(36, 123, 160,1) 5%, rgba(244, 241, 187,1) 95%);
 }
 
 .effect-movedown .container {
@@ -394,7 +394,7 @@ html, body, .perspective {
 }
 
 .effect-movedown .outer-nav a:hover {
-	color: #rgba(86, 216, 228,1);
+	color: rgba(255, 22, 84, 1.0);
 }
 
 .effect-movedown.animate .outer-nav a {
@@ -460,7 +460,7 @@ html, body, .perspective {
 
 .effect-rotatetop .outer-nav a {
 	opacity: 0;
-	color: #rgba(86, 216, 228,1);
+	color: rgba(255, 22, 84, 1.0);
 	-webkit-transform: translateY(200px) translateZ(-1000px);
 	transform: translateY(200px) translateZ(-1000px);
 	-webkit-transition: -webkit-transform 0.4s, opacity 0.4s;
