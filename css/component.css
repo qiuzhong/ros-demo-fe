@@ -362,7 +362,7 @@ html, body, .perspective {
 
 /* Effect Move Down */
 .effect-movedown {
-	background:linear-gradient(115deg, rgba(36, 123, 160,1) 5%, rgba(244, 241, 187,1) 95%);
+	background:linear-gradient(115deg, rgba(36, 123, 160,1) 2%, rgba(216, 49, 91, 1.0) 99%);
 }
 
 .effect-movedown .container {

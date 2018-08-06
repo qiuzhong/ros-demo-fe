@@ -181,7 +181,7 @@ svg:hover {
 
 .log {
 	border: 1px solid rgba(255, 255, 255, 0.2);
-	min-height: 412px;
+	min-height: 500px;
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 16px;
 	padding: 1.6em;
@@ -218,7 +218,7 @@ button {
 .ros-demos a:hover,
 .ros-demos a:active,
 .ros-demos a.current-demo {
-	background: rgba(237, 106, 90, 1);
+	background: rgba(216, 49, 91, 1);
 }
 
 button {
@@ -338,11 +338,11 @@ button:active {
 }
 
 .roundcolor {
-	background: rgba(237, 106, 90, 1.0) !important;
+	background: rgba(216, 49, 91, 1.0) !important;
 }
 
 .roundcolor2 {
-	background: rgba(255, 22, 84, 1.0) !important;
+	background: rgba(10, 36, 99, 1.0) !important;
 }
 
 input {
@@ -351,7 +351,7 @@ input {
 	margin: 2em auto;
 	font-size: 1em;
 	background-color: #fff;
-	color: rgba(237, 106, 90, 0.8);
+	color: rgba(10, 36, 99, 1.0) ;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 	border-radius: 10px;
 	width: 100%;
@@ -360,7 +360,7 @@ input {
 input:hover {
 	cursor: pointer;
 	color: #fff;
-  background-color: rgba(237, 106, 90, 0.8);
+  background-color: rgba(10, 36, 99, 1.0);
 	border: 0px;
 }
 
