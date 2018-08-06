@@ -59,7 +59,9 @@
                   <div class='italic vno t8'>Parsed JSON result</div>
                 </div>
                 <div class='n'></div>
-                <div class='n'></div>
+                <div class='n'>
+                  <div class='italic vno t3'>Parsed JSON and process command</div>
+                </div>
                 <div class='n'></div>
                 <div class='n'></div>
               </div>
@@ -75,7 +77,7 @@
                   </div>
                 </div>
                 <div class='n ltr arrow'>
-                  <div class='italic vno t7'>JSON transferring</div>
+                  <div class='italic vno t2'>Web Socket</div>
                   <div class='svg-arrow'>
                     <svg id='a3' aria-hidden="true" data-prefix="fas" data-icon="arrow-left" class="vno t7" role="img" xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512">
@@ -86,7 +88,7 @@
                       <path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
                     </svg>
                   </div>
-                  <div class='italic vno t2'>Stringify JSON response</div>
+                  <div class='italic vno t7'>JSON response</div>
                 </div>
                 <div class='n'>
                   <div class="roslibjsworkflow">
@@ -98,7 +100,7 @@
                   </div>
                 </div>
                 <div class='n ltr arrow'>
-                  <div class='italic vno t6'>Invoke rclnodejs</div>
+                  <div class='italic vno t3'>Invoke rclnodejs</div>
                   <div class='svg-arrow'>
                     <svg id='a5' aria-hidden="true" data-prefix="fas" data-icon="arrow-left" class="vno t6" role="img" xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512">
@@ -109,7 +111,7 @@
                       <path fill="currentColor" d="M190.5 66.9l22.2-22.2c9.4-9.4 24.6-9.4 33.9 0L441 239c9.4 9.4 9.4 24.6 0 33.9L246.6 467.3c-9.4 9.4-24.6 9.4-33.9 0l-22.2-22.2c-9.5-9.5-9.3-25 .4-34.3L311.4 296H24c-13.3 0-24-10.7-24-24v-32c0-13.3 10.7-24 24-24h287.4L190.9 101.2c-9.8-9.3-10-24.8-.4-34.3z"></path>
                     </svg>
                   </div>
-                  <div class='italic vno t3'>Return request result</div>
+                  <div class='italic vno t6'>Return request result</div>
                 </div>
                 <div class='n '>
                   <div class="roslibjsworkflow">
@@ -144,18 +146,18 @@
 
               <div class="flex-container">
                 <div class='n'>
-                  <input type="button" value="Workflow" />
+                  
                 </div>
                 <div class='n'></div>
-                <div class='n'></div>
+                <div class='n'><input type="button" value="Workflow" /></div>
                 <div class='n'></div>
                 <div class='n'>
-                  <div class="roslibjsworkflow">
+                  <!-- <div class="roslibjsworkflow">
                     <div class="round">
                       <div class="roundnow" id='r5'>RCL</div>
                       <div class="mark"></div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
@@ -163,7 +165,40 @@
           </div>
           <div class="columnleft">
             <div class="log">
-              Code Snipnet
+              <!-- Code Snipnet -->
+              <div id=""><pre>
+                var ros = new ROSLIB.Ros();
+                ros.connect('ws://localhost:9090');
+
+                var example = new ROSLIB.Topic({
+                  ros : ros,
+                  name : '/cmdVel',
+                  messageType : 'sensor_msgs/Twist'
+                });
+                example.publish({
+                  linear: {x: 0.05, y: 0.0, z: 0.0},
+                  angular: {x: 0.0, y: 0.0, z: 0.0}
+                });
+              </pre></div>
+              <div id=""><pre>
+
+              </pre></div>
+              <div id=""><pre>
+                const rclnodejs = require('rclnodejs');
+
+                rclnodejs.init().then(function() {
+                    let node = rclnodejs.createNode('example');
+                    let publisher = node.createPublisher('sensor_msgs/msg/Twist', '/cmdVel');
+                    publisher.publish({
+                        linear: {x: 0.05, y: 0.0, z: 0.0},
+                        angular: {x: 0.0, y: 0.0, z: 0.0}
+                    });
+                    rclnodejs.spin(node);
+                }).catch(function(err) {
+                    console.log(err);
+                });
+
+              </pre></div>
             </div>
           </div>
           <div class="related">
@@ -211,13 +246,13 @@
       arrowshow('.t3');
       await sleep(2000);
       roundshow('#r4', 'roundcolor');
-      arrowshow('.t4');
+      // arrowshow('.t4');
       await sleep(2000);
-      roundshow('#r5', 'roundcolor');
-      await sleep(2000);
-      roundshow('#r5', 'roundcolor2');
-      arrowshow('.t5');
-      await sleep(2000);
+      // roundshow('#r5', 'roundcolor');
+      // await sleep(2000);
+      // roundshow('#r5', 'roundcolor2');
+      // arrowshow('.t5');
+      // await sleep(2000);
       roundshow('#r4', 'roundcolor2');
       arrowshow('.t6');
       await sleep(2000);
