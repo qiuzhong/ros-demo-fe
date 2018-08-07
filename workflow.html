@@ -29,7 +29,7 @@
           <div class="columnright">
             <div class='containerx'>
               <div class="flex-container">
-                <div class='n'>
+                <div class='n' id="roslibjs-node">
                   <div class="roslibjsworkflow">
                     <div class="round">
                       <div class="roundnow" id='r1'>ROSLIBJS</div>
@@ -90,7 +90,7 @@
                   </div>
                   <div class='italic vno t7'>JSON response</div>
                 </div>
-                <div class='n'>
+                <div class='n' id="bridge-node">
                   <div class="roslibjsworkflow">
                     <div class="round">
                       <div class="roundnow" id='r3'>ROS2
@@ -113,7 +113,7 @@
                   </div>
                   <div class='italic vno t6'>Return request result</div>
                 </div>
-                <div class='n '>
+                <div class='n' id="rclnodejs-node">
                   <div class="roslibjsworkflow">
                     <div class="round">
                       <div class="roundnow" id='r4'>rclnodejs</div>
@@ -166,38 +166,61 @@
           <div class="columnleft">
             <div class="log">
               <!-- Code Snipnet -->
-              <div id=""><pre>
-                var ros = new ROSLIB.Ros();
-                ros.connect('ws://localhost:9090');
+                <div id="roslibjs-code" style="display: none"><pre>
+var ros = new ROSLIB.Ros();
+ros.connect('ws://localhost:9090');
+var example = new ROSLIB.Topic({
+  ros : ros,
+  name : '/cmdVel',
+  messageType : 'sensor_msgs/Twist'
+  });
+example.publish({
+  linear: {x: 0.05, y: 0.0, z: 0.0},
+  angular: {x: 0.0, y: 0.0, z: 0.0}
+});
 
-                var example = new ROSLIB.Topic({
-                  ros : ros,
-                  name : '/cmdVel',
-                  messageType : 'sensor_msgs/Twist'
-                });
-                example.publish({
-                  linear: {x: 0.05, y: 0.0, z: 0.0},
-                  angular: {x: 0.0, y: 0.0, z: 0.0}
-                });
+// request sent to ros2-web-bridge
+// based on rosbridge v2 protocol
+{
+  op: "publish",
+  id: "publish:/cmd_vel:1",
+  topic: "/cmd_vel",
+  msg: {linear: {x: 0.05, y: 0.0, z: 0.0},
+        angular: {x: 0.0, y: 0.0, z: 0.0}}
+}
               </pre></div>
-              <div id=""><pre>
 
+              <div id="bridge-code" style="display: none"><pre>
+this._registerOpMap('publish', (command) => {              
+  let publisher = this._resourceProvider.getPublisherByTopicName(
+    command.topic);
+  if (publisher) {
+    publisher.publish(command.msg);
+  }
+});
+
+// rosbridge v2 protocol response 
+// after invoking rclnodejs
+{
+  op: "set_lvel",
+  level: "none"
+}
               </pre></div>
-              <div id=""><pre>
-                const rclnodejs = require('rclnodejs');
+              <div id="rclnodejs-code" style="display: none"><pre>
+const rclnodejs = require('rclnodejs');
 
-                rclnodejs.init().then(function() {
-                    let node = rclnodejs.createNode('example');
-                    let publisher = node.createPublisher('sensor_msgs/msg/Twist', '/cmdVel');
-                    publisher.publish({
-                        linear: {x: 0.05, y: 0.0, z: 0.0},
-                        angular: {x: 0.0, y: 0.0, z: 0.0}
-                    });
-                    rclnodejs.spin(node);
-                }).catch(function(err) {
-                    console.log(err);
-                });
-
+rclnodejs.init().then(function() {
+  let node = rclnodejs.createNode('example');
+  let publisher = node.createPublisher('sensor_msgs/msg/Twist',
+    '/cmdVel');
+  publisher.publish({
+    linear: {x: 0.05, y: 0.0, z: 0.0},
+    angular: {x: 0.0, y: 0.0, z: 0.0}
+  });
+  rclnodejs.spin(node);
+}).catch(function(err) {
+  console.log(err);
+});
               </pre></div>
             </div>
           </div>
@@ -265,6 +288,37 @@
       roundshow('#r1', 'roundcolor2');
     }
 
+    function showCodeSnipetByNode(nodeId) {
+        let nodeCodeMap = {
+          'roslibjs-node': 'roslibjs-code',
+          'bridge-node': 'bridge-code',
+          'rclnodejs-node': 'rclnodejs-code'
+        };
+
+        for (let thisNodeId in nodeCodeMap) {
+          
+          if (thisNodeId === nodeId) {
+            console.log(nodeCodeMap[nodeId] + ' display')
+            document.getElementById(nodeCodeMap[nodeId]).style.diplay = 'block';            
+          } else {
+            console.log(nodeCodeMap[thisNodeId] + ' not display')
+            document.getElementById(nodeCodeMap[thisNodeId]).style.display = 'none';
+          }
+        }
+    }
+
+    function setNodeHandler(nodeId) {
+      let element = document.getElementById(nodeId);
+      element.onclick = function() {
+        document.getElementById(nodeCodeMap[nodeId]).style.display = 'block';
+        for (let id in nodeCodeMap) {
+            if (id !== nodeId) {
+                document.getElementById(nodeCodeMap[id]).style.display = 'none';
+            }
+        }        
+      };
+    }
+
     let init = function () {
       // let svg = document.querySelectorAll('svg');
       // let italic = document.querySelectorAll('.italic');
@@ -280,6 +334,15 @@
     }
 
     document.addEventListener('DOMContentLoaded', init, false);
+
+    let nodeCodeMap = {
+      'roslibjs-node': 'roslibjs-code',
+      'bridge-node': 'bridge-code',
+      'rclnodejs-node': 'rclnodejs-code'
+    };
+    for (let nodeId in nodeCodeMap) {
+      setNodeHandler(nodeId);
+    }
   </script>
 </body>
 

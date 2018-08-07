@@ -184,9 +184,14 @@ svg:hover {
 	min-height: 500px;
 	font-family: 'Courier New', Courier, monospace;
 	font-size: 16px;
-	padding: 1.6em;
+	padding: 1em;
 	color: rgba(255, 255, 255, 1.0);
+	text-align: left;
 }
+
+/* #roslibjs-code, #bridge-code, #rclnodejs-code {
+	display: none;
+} */
 
 .column p {
 	font-weight: 300;
