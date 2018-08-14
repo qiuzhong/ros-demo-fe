@@ -25,8 +25,7 @@
 					<p>
 						<button id="showMenu">MENU</button>
 					</p>
-					<div class="twodmap">
-						A 2D Map Renderer here
+					<div class="twodmap" id="ros2dmap">
 					</div>
 				</header>
 				<div class="main clearfix">
@@ -34,7 +33,7 @@
 						<div class='controller'>
 							<div class='nx'>
 								<div></div>
-								<div>
+								<div id="up">
 									<svg aria-hidden="true" data-prefix="far" data-icon="arrow-alt-circle-up" class="" role="img" xmlns="http://www.w3.org/2000/svg"
 									  viewBox="0 0 512 512">
 										<path fill="currentColor" d="M256 504c137 0 248-111 248-248S393 8 256 8 8 119 8 256s111 248 248 248zm0-448c110.5 0 200 89.5 200 200s-89.5 200-200 200S56 366.5 56 256 145.5 56 256 56zm20 328h-40c-6.6 0-12-5.4-12-12V256h-67c-10.7 0-16-12.9-8.5-20.5l99-99c4.7-4.7 12.3-4.7 17 0l99 99c7.6 7.6 2.2 20.5-8.5 20.5h-67v116c0 6.6-5.4 12-12 12z"></path>
@@ -43,14 +42,14 @@
 								<div></div>
 							</div>
 							<div class='nx'>
-								<div>
+								<div id="left">
 									<svg aria-hidden="true" data-prefix="far" data-icon="arrow-alt-circle-left" class="" role="img" xmlns="http://www.w3.org/2000/svg"
 									  viewBox="0 0 512 512">
 										<path fill="currentColor" d="M8 256c0 137 111 248 248 248s248-111 248-248S393 8 256 8 8 119 8 256zm448 0c0 110.5-89.5 200-200 200S56 366.5 56 256 145.5 56 256 56s200 89.5 200 200zm-72-20v40c0 6.6-5.4 12-12 12H256v67c0 10.7-12.9 16-20.5 8.5l-99-99c-4.7-4.7-4.7-12.3 0-17l99-99c7.6-7.6 20.5-2.2 20.5 8.5v67h116c6.6 0 12 5.4 12 12z"></path>
 									</svg>
 								</div>
 								<div></div>
-								<div>
+								<div id="right">
 									<svg aria-hidden="true" data-prefix="far" data-icon="arrow-alt-circle-right" class="" role="img" xmlns="http://www.w3.org/2000/svg"
 									  viewBox="0 0 512 512">
 										<path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-110.5 89.5-200 200-200s200 89.5 200 200-89.5 200-200 200S56 366.5 56 256zm72 20v-40c0-6.6 5.4-12 12-12h116v-67c0-10.7 12.9-16 20.5-8.5l99 99c4.7 4.7 4.7 12.3 0 17l-99 99c-7.6 7.6-20.5 2.2-20.5-8.5v-67H140c-6.6 0-12-5.4-12-12z"></path>
@@ -59,7 +58,7 @@
 							</div>
 							<div class='nx'>
 								<div></div>
-								<div>
+								<div id="down">
 									<svg aria-hidden="true" data-prefix="far" data-icon="arrow-alt-circle-down" class="" role="img" xmlns="http://www.w3.org/2000/svg"
 									  viewBox="0 0 512 512">
 										<path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm-32-316v116h-67c-10.7 0-16 12.9-8.5 20.5l99 99c4.7 4.7 12.3 4.7 17 0l99-99c7.6-7.6 2.2-20.5-8.5-20.5h-67V140c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12z"></path>
@@ -69,16 +68,14 @@
 							</div>
 						</div>
 						<div class='playstop'>
-							<div>
-								Play / Stop
+							<div id="start">
+								Play
 							</div>
 						</div>
 					</div>
 					<div class="columnright">
-						<div class="log">
-							ros2-web-bridge:Bridge Exception caught in Bridge.executeCommand(): TypeError: msg.hasMember is not a function +1m ros2-web-bridge:Bridge
-							Error: TypeError: msg.hasMember is not a function happened when executing command publish +1ms ros2-web-bridge:Bridge
-							Response: {"op":"set_level","id":"publish:/big_data_topic:3","level":"error"} +0ms
+						<div class="log" id="log">
+							<!-- Hello World! -->
 						</div>
 					</div>
 					<div class="related">
@@ -95,6 +92,97 @@
 	</div>
 	<script src="js/classie.js"></script>
 	<script src="js/menu.js"></script>
-</body>
+	<script src="js/eventemitter2.min.js"></script>
+	<script src="js/roslib.js"></script>
+	<script src="js/controller.js"></script>
+	<script src="js/easeljs.js"></script>
+	<script src="js/ros2d.js"></script>
+	<script src="js/ros2dmap.js"></script>
+	<script src="js/log.js"></script>
+	<script>
+		let ros = new ROSLIB.Ros();
+		let bridgeHost = '127.0.0.1';
+		let bridgePort = 9090;
+		
+		ros.on('connection', function() {
+    	console.log('bridge connected');
+  	});
+  	ros.on('error', function(data) {
+    	console.log('error');
+  	});
+  	ros.on('closed', function() {
+    	console.log('bridge closed');
+  	});
+		ros.connect('ws://' + bridgeHost + ':' + bridgePort);
+		
+		let webRosController = new WebRosController(ros);
 
+		let poseTopic = new ROSLIB.Topic({
+      ros: ros,
+      name: '/odom',
+      messageType: 'nav_msgs/Odometry'
+    });
+		let ros2dmap = new Ros2dMap(ros, {
+			divName: 'ros2dmap',
+    	width: 400,
+    	height: 400
+		});
+		// poseTopic.subscribe(function(msg) {
+		// 	console.log('received pose msg');
+		// 	// let pose = msg.pose.pose.position;
+		// 	// let orientation = msg.pose.pose.orientation;
+		// 	// console.log(pose);
+		// 	// console.log(orientation);
+      // ros2dmap.update(pose, orientation);
+		// });
+		let logger = new Logger('log', webRosController);
+		let upBtn = document.getElementById('up');
+		upBtn.onclick = function() {
+			webRosController.moveForward();
+			startBtn.innerHTML = 'Stop';
+
+			logger.showLog('up');
+		};
+
+		let downBtn = document.getElementById('down');
+		downBtn.onclick = function() {
+			webRosController.moveBack();
+			startBtn.innerHTML = 'Stop';
+
+			logger.showLog('down');
+		};
+
+		let leftBtn = document.getElementById('left');
+		leftBtn.onclick = function() {
+			webRosController.turnLeft();
+
+			logger.showLog('left');
+		};
+
+		let rightBtn = document.getElementById('right');
+		rightBtn.onclick = function() {
+			webRosController.turnRight();
+
+			logger.showLog('right');
+		};
+
+		let startBtn = document.getElementById('start');
+		startBtn.onclick = function() {
+
+			if (!webRosController.isRobotMoving) {
+				webRosController.start();
+				startBtn.innerHTML = 'Stop';
+			} else {
+				webRosController.stop();
+				startBtn.innerHTML = 'Start';
+			}
+
+			logger.showLog('up');
+		};
+
+
+
+
+	</script>
+	</body>
 </html>
