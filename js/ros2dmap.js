@@ -13,7 +13,7 @@ function Ros2dMap(ros, options) {
     divID: divName,
     width: width,
     height: height,
-    background: '#dddddd'
+    background: '#99ccff'
   });
 
   this.gridClient = new ROS2D.OccupancyGridClient({
@@ -22,15 +22,15 @@ function Ros2dMap(ros, options) {
   });
 
   let grid = new ROS2D.Grid({
-    size: 10,
+    size: 40,
     cellSize: 0.10
   });
   this.gridClient.rootObject.addChild(grid);
 
   let robotMaker = new ROS2D.NavigationArrow({
-    size: 5,
-    strokeSize: 0.5,
-    fillColor: createjs.Graphics.getRGB(64, 128, 255, 0.62),
+    size: 3,
+    strokeSize: 0.3,
+    fillColor: createjs.Graphics.getRGB(0x99, 0xcc, 0xff, 0.62),
     pulse: false
   });
   this.gridClient.rootObject.addChild(robotMaker);
@@ -46,7 +46,6 @@ function Ros2dMap(ros, options) {
   robotMaker.visible = true;
 
   this.update = function(pose, orientation) {
-    // console.log(pose.x, pose.y);
     robotMaker.x = pose.x;
     robotMaker.y = -pose.y;
 

@@ -96,7 +96,7 @@ a:focus {
 }
 
 .twodmap {
-	border: 1px solid rgba(255, 255, 255, 0.2);
+	border: 1px rgba(255, 255, 255, 0.2);
 	/* padding: 4em; */
 }
 

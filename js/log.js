@@ -106,3 +106,64 @@ Logger.prototype.showLog = function(btnDirection) {
       return;
   }
 }
+
+Logger.prototype.showLogAnimation = function() {
+  let startBtn = document.getElementById('log');
+  let logArray = new Array(5);
+  logArray.push('[ros2-web-bridge:Bridge] JSON command received: ');
+  logArray.push('[ros2-web-bridge:Bridge] Publish a topic named /cmd_vel: ');
+  logArray.push('[rclnodejs] Publishing sensor_msgs/Twist: ');
+  logArray.push('[ros2-web-bridge:Bridge] Response: ');
+  logArray.push('[roslibjs] Result: ');
+
+  let count = 0;
+  setInterval(function() {
+    count++;
+    let newLogArray = logArray.map((e) => { return e + ` ${count}`; });
+    let log = newLogArray.join('<br />');
+    startBtn.innerHTML = log;
+  }, 50);
+}
+
+Logger.prototype.showTerminalLog = function() {
+  let logArray = [
+    '[roslibjs] Publishing geometry_msgs/Twist: ',
+    '[ros2-web-bridge:Bridge] JSON command received: ',
+    '[ros2-web-bridge:Bridge] Publish a topic named /cmd_vel',
+    '[ros2-web-bridge:Brige] Publishing geometry_msgs/Twist',
+    '[ros2-web-bridge] Response ',
+    '[roslibjs] Result: ',
+    '[roslibjs] Publishing geometry_msgs/Twist: ',
+    '[ros2-web-bridge:Bridge] JSON command received: ',
+    '[ros2-web-bridge:Bridge] Publish a topic named /cmd_vel',
+    '[ros2-web-bridge:Brige] Publishing geometry_msgs/Twist',
+    '[ros2-web-bridge] Response ',
+    '[roslibjs] Result: ',
+    '[roslibjs] Publishing geometry_msgs/Twist: ',
+    '[ros2-web-bridge:Bridge] JSON command received: ',
+    '[ros2-web-bridge:Bridge] Publish a topic named /cmd_vel',
+    '[ros2-web-bridge:Brige] Publishing geometry_msgs/Twist',
+    '[ros2-web-bridge] Response ',
+    '[roslibjs] Result: ',
+    '[roslibjs] Publishing geometry_msgs/Twist: ',
+    '[ros2-web-bridge:Bridge] JSON command received: ',
+    '[ros2-web-bridge:Bridge] Publish a topic named /cmd_vel',
+    '[ros2-web-bridge:Brige] Publishing geometry_msgs/Twist',
+    '[ros2-web-bridge] Response ',
+    '[roslibjs] Result: '
+  ];
+
+  let count = 0;
+  // setInterval(() => {
+  //   count++;
+  //   let newLogArray = logArray.map((e) => {return e + `${count}`;});
+  // }, 100);
+
+  setTimeout(() => {
+    document.getElementById('log').innerHTML = logArray.join('<br />');
+  }, 100);
+
+  // setTimeout(() => {
+    // document.getElementById('log').innerHTML = logArray.join('')
+  // }, 200);
+};

@@ -127,14 +127,14 @@
     	width: 400,
     	height: 400
 		});
-		// poseTopic.subscribe(function(msg) {
-		// 	console.log('received pose msg');
-		// 	// let pose = msg.pose.pose.position;
-		// 	// let orientation = msg.pose.pose.orientation;
-		// 	// console.log(pose);
-		// 	// console.log(orientation);
-      // ros2dmap.update(pose, orientation);
-		// });
+		poseTopic.subscribe(function(msg) {
+			console.log('received pose msg');
+			let pose = msg.pose.pose.position;
+			let orientation = msg.pose.pose.orientation;
+			console.log(pose);
+			console.log(orientation);
+      ros2dmap.update(pose, orientation);
+		});
 		let logger = new Logger('log', webRosController);
 		let upBtn = document.getElementById('up');
 		upBtn.onclick = function() {
@@ -178,11 +178,9 @@
 			}
 
 			logger.showLog('up');
+			// // logger.showLogAnimation();
+			// logger.showTerminalLog();
 		};
-
-
-
-
 	</script>
 	</body>
 </html>
